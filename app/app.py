@@ -4,7 +4,7 @@ import openai
 # Configure a sua chave de API da OpenAI
 openai.api_key = 'sua_chave_de_api_aqui'
 
-app = Flask(__name__)
+app=Flask(__name__, template_folder='../templates', static_folder='../static')
 
 @app.route('/')
 def index():

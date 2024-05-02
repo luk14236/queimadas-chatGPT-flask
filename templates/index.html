@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with GPT-3.5</title>
+    <link rel="stylesheet" href="static/assets/bootstrap.min.css">
+    <script type="text/javascript" src="static/assets/bootstrap.min.js"></script>
+</head>
+<body style="background-color: #db9807;">
+    <section >
+        <div class="container py-5">
+      
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-xl-12">
+      
+              <ul class="list-unstyled">
+                <li class="d-flex justify-content-between mb-4">
+                  <img src="static/images/logo-focos.png" alt="avatar"
+                    class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
+                  <div class="card">
+                    <div class="card-header d-flex justify-content-between p-3">
+                      <p class="fw-bold mb-0">Equipe queimadas</p>
+                      <p class="text-muted small mb-0"><i class="far fa-clock"></i> 12 mins ago</p>
+                    </div>
+                    <div class="card-body">
+                      <p class="mb-0">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.
+                      </p>
+                    </div>
+                  </div>
+                </li>
+                <li class="d-flex justify-content-between mb-4">
+                  <div class="card w-100">
+                    <div class="card-header d-flex justify-content-between p-3">
+                      <p class="fw-bold mb-0"></p>
+                      <p class="text-muted small mb-0"><i class="far fa-clock"></i> 13 mins ago</p>
+                    </div>
+                    <div class="card-body">
+                      <p class="mb-0">
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                        laudantium.
+                      </p>
+                    </div>
+                  </div>
+                  <img src="static/images/user-icon.png" alt="avatar"
+                    class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong" width="60">
+                </li>
+                <li class="bg-white mb-3">
+                  <div data-mdb-input-init class="form-outline">
+                    <textarea class="form-control" id="textAreaExample2" rows="4"></textarea>
+                  </div>
+                </li>
+                <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-warning btn-rounded float-end">Enviar</button>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById('user-input').value;
+            var chatDisplay = document.getElementById('chat-display');
+            
+            // Adicione a mensagem do usuário ao display
+            chatDisplay.innerHTML += "<p>User: " + userInput + "</p>";
+            
+            // Faça uma solicitação POST para obter a resposta do servidor Flask
+            fetch('/get-response', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'user_message=' + userInput
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Adicione a resposta do modelo ao display
+                chatDisplay.innerHTML += "<p>Bot: " + data + "</p>";
+            });
+            
+            // Limpe a entrada do usuário
+            document.getElementById('user-input').value = '';
+        }
+    </script>
+</body>
+</html>
