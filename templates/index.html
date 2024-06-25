@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="static/assets/bootstrap.min.css">
     <script type="text/javascript" src="static/assets/bootstrap.min.js"></script>
 </head>
-<body style="background-color: #db9807;">
+<body style="background-color: #db9807; background-image: url('static/images/background.jpg'); ">
     <section >
-        <div class="container py-5">
+        <div class="container py-5" style="background:#fff;opacity:.93;border-radius:5px;margin-top:15px;">
       
           <div class="row">
             <div class="col-md-12 col-lg-12 col-xl-12">
       
-              <ul class="list-unstyled">
+              <ul class="list-unstyled" id="chat-display">
                 <li class="d-flex justify-content-between mb-4">
                   <img src="static/images/logo-focos.png" alt="avatar"
                     class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
@@ -52,7 +52,7 @@
                     <textarea class="form-control" id="textAreaExample2" rows="4"></textarea>
                   </div>
                 </li>
-                <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-warning btn-rounded float-end">Enviar</button>
+                <button onclick="sendMessage()" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-warning btn-rounded float-end">Enviar</button>
               </ul>
             </div>
           </div>
@@ -61,7 +61,7 @@
     
     <script>
         function sendMessage() {
-            var userInput = document.getElementById('user-input').value;
+            var userInput = document.getElementById('textAreaExample2').value;
             var chatDisplay = document.getElementById('chat-display');
             
             // Adicione a mensagem do usuário ao display
