@@ -1,11 +1,9 @@
 from flask import Flask, render_template, request
 import json 
-import dotenv
 import openai
 import os
 
-env_vars = dotenv.dotenv_values()
-openai.api_key = env_vars["openai-key"]
+openai.api_key = os.environ["openai-key"]
 
 app=Flask(__name__, template_folder='../templates', static_folder='../static')
 
